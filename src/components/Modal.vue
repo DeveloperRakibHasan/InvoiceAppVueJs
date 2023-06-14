@@ -4,7 +4,16 @@
       <p>Are you sure you want to exit? Your changes will not be saved?</p>
       <div class="actions flex">
         <button @click="closeModal" class="purple">Return</button>
-        <button @click="closeInvoice" class="red">Close</button>
+        <button @click="closeInvoice" class="red">
+          <lord-icon
+            src="https://cdn.lordicon.com/jfhbogmw.json"
+            trigger="hover"
+            colors="primary:#121331"
+            style="width: 25px; height: 25px"
+          >
+          </lord-icon>
+          Close
+        </button>
       </div>
     </div>
   </div>

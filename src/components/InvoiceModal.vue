@@ -1,5 +1,9 @@
 <template>
-  <div @click="checkClick" ref="invoiceWrap" class="invoice-wrap flex flex-column">
+  <div
+    @click="checkClick"
+    ref="invoiceWrap"
+    class="invoice-wrap flex flex-column"
+  >
     <form @submit.prevent="submitForm" class="invoice-content">
       <Loading v-show="loading" />
       <h1 v-if="!editInvoice">New Invoice</h1>
@@ -10,7 +14,12 @@
         <h4>Bill From</h4>
         <div class="input flex flex-column">
           <label for="billerStreetAddress">Street Address</label>
-          <input required type="text" id="billerStreetAddress" v-model="billerStreetAddress" />
+          <input
+            required
+            type="text"
+            id="billerStreetAddress"
+            v-model="billerStreetAddress"
+          />
         </div>
         <div class="location-details flex">
           <div class="input flex flex-column">
@@ -19,11 +28,21 @@
           </div>
           <div class="input flex flex-column">
             <label for="billerZipCode">Zip Code</label>
-            <input required type="text" id="billerZipCode" v-model="billerZipCode" />
+            <input
+              required
+              type="text"
+              id="billerZipCode"
+              v-model="billerZipCode"
+            />
           </div>
           <div class="input flex flex-column">
             <label for="billerCountry">Country</label>
-            <input required type="text" id="billerCountry" v-model="billerCountry" />
+            <input
+              required
+              type="text"
+              id="billerCountry"
+              v-model="billerCountry"
+            />
           </div>
         </div>
       </div>
@@ -41,7 +60,12 @@
         </div>
         <div class="input flex flex-column">
           <label for="clientStreetAddress">Street Address</label>
-          <input required type="text" id="clientStreetAddress" v-model="clientStreetAddress" />
+          <input
+            required
+            type="text"
+            id="clientStreetAddress"
+            v-model="clientStreetAddress"
+          />
         </div>
         <div class="location-details flex">
           <div class="input flex flex-column">
@@ -50,11 +74,21 @@
           </div>
           <div class="input flex flex-column">
             <label for="clientZipCode">Zip Code</label>
-            <input required type="text" id="clientZipCode" v-model="clientZipCode" />
+            <input
+              required
+              type="text"
+              id="clientZipCode"
+              v-model="clientZipCode"
+            />
           </div>
           <div class="input flex flex-column">
             <label for="clientCountry">Country</label>
-            <input required type="text" id="clientCountry" v-model="clientCountry" />
+            <input
+              required
+              type="text"
+              id="clientCountry"
+              v-model="clientCountry"
+            />
           </div>
         </div>
       </div>
@@ -64,11 +98,21 @@
         <div class="payment flex">
           <div class="input flex flex-column">
             <label for="invoiceDate">Invoice Date</label>
-            <input disabled type="text" id="invoiceDate" v-model="invoiceDate" />
+            <input
+              disabled
+              type="text"
+              id="invoiceDate"
+              v-model="invoiceDate"
+            />
           </div>
           <div class="input flex flex-column">
             <label for="paymentDueDate">Payment Due</label>
-            <input disabled type="text" id="paymentDueDate" v-model="paymentDueDate" />
+            <input
+              disabled
+              type="text"
+              id="paymentDueDate"
+              v-model="paymentDueDate"
+            />
           </div>
         </div>
         <div class="input flex flex-column">
@@ -80,7 +124,12 @@
         </div>
         <div class="input flex flex-column">
           <label for="productDescription">Product Description</label>
-          <input required type="text" id="productDescription" v-model="productDescription" />
+          <input
+            required
+            type="text"
+            id="productDescription"
+            v-model="productDescription"
+          />
         </div>
         <div class="work-items">
           <h3>Item List</h3>
@@ -91,13 +140,28 @@
               <th class="price">Price</th>
               <th class="total">Toal</th>
             </tr>
-            <tr class="table-items flex" v-for="(item, index) in invoiceItemList" :key="index">
-              <td class="item-name"><input type="text" v-model="item.itemName" /></td>
+            <tr
+              class="table-items flex"
+              v-for="(item, index) in invoiceItemList"
+              :key="index"
+            >
+              <td class="item-name">
+                <input type="text" v-model="item.itemName" />
+              </td>
               <td class="qty"><input type="text" v-model="item.qty" /></td>
               <td class="price"><input type="text" v-model="item.price" /></td>
-              <td class="total flex">${{ (item.total = item.qty * item.price) }}</td>
-              <td>
-              <img @click="deleteInvoiceItem(item.id)" src="../assets/icon-delete.svg" alt="" />
+              <td class="total flex">
+                ${{ (item.total = item.qty * item.price) }}
+              </td>
+              <td class="delete_icon">
+                <lord-icon
+                  @click="deleteInvoiceItem(item.id)"
+                  src="https://cdn.lordicon.com/jmkrnisz.json"
+                  trigger="hover"
+                  colors="primary:#f00"
+                  style="width: 25px; height: 25px; opacity: 0.7"
+                >
+                </lord-icon>
               </td>
             </tr>
           </table>
@@ -112,12 +176,37 @@
       <!-- Save/Exit -->
       <div class="save flex">
         <div class="left">
-          <button type="button" @click="closeInvoice" class="red">Cancel</button>
+          <button type="button" @click="closeInvoice" class="red">
+            <lord-icon
+              src="https://cdn.lordicon.com/jfhbogmw.json"
+              trigger="hover"
+              colors="primary:#121331"
+              style="width: 25px; height: 25px"
+            >
+            </lord-icon>
+            Cancel
+          </button>
         </div>
         <div class="right flex">
-          <button v-if="!editInvoice" type="submit" @click="saveDraft" class="dark-purple">Save Draft</button>
-          <button v-if="!editInvoice" type="submit" @click="publishInvoice" class="purple">Create Invoice</button>
-          <button v-if="editInvoice" type="submit" class="purple">Update Invoice</button>
+          <button
+            v-if="!editInvoice"
+            type="submit"
+            @click="saveDraft"
+            class="dark-purple"
+          >
+            Save Draft
+          </button>
+          <button
+            v-if="!editInvoice"
+            type="submit"
+            @click="publishInvoice"
+            class="purple"
+          >
+            Create Invoice
+          </button>
+          <button v-if="editInvoice" type="submit" class="purple">
+            Update Invoice
+          </button>
         </div>
       </div>
     </form>
@@ -165,7 +254,10 @@ export default {
   created() {
     if (!this.editInvoice) {
       this.invoiceDateUnix = Date.now();
-      this.invoiceDate = new Date(this.invoiceDateUnix).toLocaleDateString("en-us", this.dateOptions);
+      this.invoiceDate = new Date(this.invoiceDateUnix).toLocaleDateString(
+        "en-us",
+        this.dateOptions
+      );
     }
 
     if (this.editInvoice) {
@@ -222,7 +314,9 @@ export default {
     },
 
     deleteInvoiceItem(id) {
-      this.invoiceItemList = this.invoiceItemList.filter((item) => item.id !== id);
+      this.invoiceItemList = this.invoiceItemList.filter(
+        (item) => item.id !== id
+      );
     },
 
     calInvoiceTotal() {
@@ -339,8 +433,12 @@ export default {
   watch: {
     paymentTerms() {
       const futureDate = new Date();
-      this.paymentDueDateUnix = futureDate.setDate(futureDate.getDate() + parseInt(this.paymentTerms));
-      this.paymentDueDate = new Date(this.paymentDueDateUnix).toLocaleDateString("en-us", this.dateOptions);
+      this.paymentDueDateUnix = futureDate.setDate(
+        futureDate.getDate() + parseInt(this.paymentTerms)
+      );
+      this.paymentDueDate = new Date(
+        this.paymentDueDateUnix
+      ).toLocaleDateString("en-us", this.dateOptions);
     },
   },
 };
@@ -368,7 +466,8 @@ export default {
     width: 100%;
     background-color: #141625;
     color: #fff;
-    box-shadow: 10px 4px 6px -1px rgba(0, 0, 0, 0.2), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    box-shadow: 10px 4px 6px -1px rgba(0, 0, 0, 0.2),
+      0 2px 4px -1px rgba(0, 0, 0, 0.06);
 
     h1 {
       margin-bottom: 48px;
@@ -422,19 +521,43 @@ export default {
 
             .item-name {
               flex-basis: 50%;
+              input {
+                padding: 10px;
+                &:focus {
+                  border: 1px solid #7c5dfa4d;
+                }
+                border: 1px solid transparent;
+              }
             }
 
             .qty {
               flex-basis: 10%;
+              input {
+                padding: 10px;
+                &:focus {
+                  border: 1px solid #7c5dfa4d;
+                }
+                border: 1px solid transparent;
+              }
             }
 
             .price {
               flex-basis: 20%;
+              input {
+                padding: 10px;
+                &:focus {
+                  border: 1px solid #7c5dfa4d;
+                }
+                border: 1px solid transparent;
+              }
             }
 
             .total {
               flex-basis: 20%;
               align-self: center;
+            }
+            .delete_icon {
+              cursor: pointer;
             }
           }
 
@@ -489,6 +612,13 @@ export default {
 
   .input {
     margin-bottom: 24px;
+    input {
+      padding: 10px;
+      &:focus {
+        border: 1px solid #7c5dfa4d;
+      }
+      border: 1px solid transparent;
+    }
   }
 
   label {

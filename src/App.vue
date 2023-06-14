@@ -22,6 +22,11 @@ import { mapState, mapActions } from "vuex";
 import Navigation from "./components/Navigation";
 import InvoiceModal from "./components/InvoiceModal";
 import Modal from "./components/Modal";
+import lottie from "lottie-web";
+import { defineElement } from "lord-icon-element";
+
+defineElement(lottie.loadAnimation);
+
 export default {
   data() {
     return {
@@ -122,6 +127,10 @@ button,
 
 .red {
   background-color: #ec5757;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
 }
 
 .purple {
@@ -172,6 +181,7 @@ button,
     border-radius: 50%;
     margin-right: 8px;
   }
+
   font-size: 12px;
   margin-right: 30px;
   align-items: center;
@@ -183,6 +193,7 @@ button,
   &::before {
     background-color: #33d69f;
   }
+
   color: #33d69f;
   background-color: rgba(51, 214, 160, 0.1);
 }
@@ -191,6 +202,7 @@ button,
   &::before {
     background-color: #ff8f00;
   }
+
   color: #ff8f00;
   background-color: rgba(255, 145, 0, 0.1);
 }
@@ -199,6 +211,7 @@ button,
   &::before {
     background-color: #dfe3fa;
   }
+
   color: #dfe3fa;
   background-color: rgba(223, 227, 250, 0.1);
 }

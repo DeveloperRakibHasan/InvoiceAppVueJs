@@ -10,6 +10,8 @@
   "dependencies": {
     "core-js": "^3.6.5",
     "firebase": "^8.6.8",
+    "lord-icon-element": "^4.1.1",
+    "lottie-web": "^5.12.2",
     "sass": "^1.63.3",
     "uid": "^2.0.0",
     "vue": "^3.0.11",
