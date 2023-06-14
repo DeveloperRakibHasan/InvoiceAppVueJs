@@ -1,5 +1,4 @@
 <template>
-  // eslint-disable-next-line
   <div @click="checkClick" ref="invoiceWrap" class="invoice-wrap flex flex-column">
     <form @submit.prevent="submitForm" class="invoice-content">
       <Loading v-show="loading" />
